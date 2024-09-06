@@ -1,0 +1,234 @@
+﻿Problem 1: given a number, print its binary representation.
+
+
+Ans.
+import java.util.Scanner;
+
+
+public class BinaryRepresentation {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+
+        // Prompt the user to enter an integer
+        System.out.print("Enter an integer: ");
+        int number = scanner.nextInt();
+
+
+        // Convert the number to binary manually
+        String binaryString = convertToBinary(number);
+
+
+        // Print the binary representation
+        System.out.println("The binary representation of " + number + " is: " + binaryString);
+
+
+        // Close the scanner
+        scanner.close();
+    }
+
+
+    // Method to convert an integer to its binary representation
+    public static String convertToBinary(int number) {
+        if (number == 0) {
+            return "0";
+        }
+
+
+        StringBuilder binary = new StringBuilder();
+        boolean isNegative = number < 0;
+
+
+        // Convert positive number to binary
+        if (isNegative) {
+            number = -number; // Make number positive for conversion
+        }
+
+
+        while (number > 0) {
+            binary.insert(0, (number % 2));
+            number /= 2;
+        }
+
+
+        // Handle negative numbers in two's complement form
+        if (isNegative) {
+            return "-" + binary.toString();
+        }
+
+
+        return binary.toString();
+    }
+}
+
+
+Problem 2: given a number ‘n’, predict whether it is a power of two or not.
+
+
+import java.util.Scanner;
+
+
+public class PowerOfTwo {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+
+        // Prompt the user to enter an integer
+        System.out.print("Enter an integer: ");
+        int n = scanner.nextInt();
+
+
+        // Check if the number is a power of two
+        boolean isPowerOfTwo = isPowerOfTwo(n);
+
+
+        // Print the result
+        if (isPowerOfTwo) {
+            System.out.println(n + " is a power of two.");
+        } else {
+            System.out.println(n + " is not a power of two.");
+        }
+
+
+        // Close the scanner
+        scanner.close();
+    }
+
+
+    // Method to check if a number is a power of two
+    public static boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
+}
+
+
+Q3. Given a number. Using bit manipulation, check whether it is odd or even.
+
+
+import java.util.Scanner;
+
+
+public class OddEvenBitManipulation {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+
+        // Prompt the user to enter an integer
+        System.out.print("Enter an integer: ");
+        int number = scanner.nextInt();
+
+
+        // Check if the number is odd or even using bit manipulation
+        boolean isOdd = (number & 1) == 1;
+
+
+        // Print the result
+        if (isOdd) {
+            System.out.println(number + " is odd.");
+        } else {
+            System.out.println(number + " is even.");
+        }
+
+
+        // Close the scanner
+        scanner.close();
+    }
+}
+
+
+Q4. Given a number, count the number of set bits in that number without using an extra space.
+Note : bit ‘1’ is also known as set bit.
+
+
+import java.util.Scanner;
+
+
+public class CountSetBits {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+
+        // Prompt the user to enter an integer
+        System.out.print("Enter an integer: ");
+        int number = scanner.nextInt();
+
+
+        // Count the number of set bits using Brian Kernighan’s Algorithm
+        int count = countSetBits(number);
+
+
+        // Print the result
+        System.out.println("The number of set bits in " + number + " is: " + count);
+
+
+        // Close the scanner
+        scanner.close();
+    }
+
+
+    // Method to count the number of set bits in an integer
+    public static int countSetBits(int n) {
+        int count = 0;
+        while (n > 0) {
+            n = n & (n - 1);
+            count++;
+        }
+        return count;
+    }
+}
+
+
+Q5. Given an integer array, duplicates are present in it in a way that all duplicates appear an even number of times except one which appears an odd number of times. Find that odd appearing element in linear time and without using any extra memory.
+
+
+import java.util.Scanner;
+
+
+public class OddOccurrenceFinder {
+    public static void main(String[] args) {
+        // Create a Scanner object to read input from the user
+        Scanner scanner = new Scanner(System.in);
+
+
+        // Prompt the user to enter the number of elements in the array
+        System.out.print("Enter the number of elements in the array: ");
+        int n = scanner.nextInt();
+
+
+        // Create an array to store the elements
+        int[] array = new int[n];
+
+
+        // Prompt the user to enter the elements of the array
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+
+        // Find the element that appears an odd number of times
+        int oddOccurrence = findOddOccurrence(array);
+
+
+        // Print the result
+        System.out.println("The element that appears an odd number of times is: " + oddOccurrence);
+
+
+        // Close the scanner
+        scanner.close();
+    }
+
+
+    // Method to find the element that appears an odd number of times
+    public static int findOddOccurrence(int[] array) {
+        int result = 0;
+        for (int num : array) {
+            result ^= num; // XOR all elements
+        }
+        return result;
+    }
+}
